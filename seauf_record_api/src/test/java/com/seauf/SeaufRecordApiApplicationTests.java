@@ -1,4 +1,4 @@
-package com.seauf.seauf_record_api;
+package com.seauf;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

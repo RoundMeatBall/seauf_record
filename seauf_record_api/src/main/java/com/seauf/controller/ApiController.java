@@ -1,4 +1,4 @@
-package com.seauf.seauf_record_api.controller;
+package com.seauf.controller;
 
 import entity.User;
 import org.springframework.web.bind.annotation.GetMapping;

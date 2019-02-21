@@ -1,13 +1,14 @@
-package com.seauf.seauf_record_api;
+package com.seauf;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-public class SeaufRecordApiApplication {
+public class SeaufRecordAdminApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SeaufRecordApiApplication.class, args);
+        SpringApplication.run(SeaufRecordAdminApplication.class, args);
     }
 
 }
