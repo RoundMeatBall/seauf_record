@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @create: 2019/02/21
  */
 @Controller
-@RequestMapping("admin")
+@RequestMapping(value = {"admin",""})
 public class AdminController {
 
     @RequestMapping("test")
@@ -17,7 +17,7 @@ public class AdminController {
         return "test";
     }
 
-    @RequestMapping("extJs")
+    @RequestMapping(value = {"extJs",""})
     public String extJs(){
         return "extJs";
     }
