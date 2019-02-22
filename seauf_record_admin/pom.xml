@@ -6,6 +6,7 @@
     <groupId>com.seauf</groupId>
     <artifactId>seauf_record_admin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>seauf_record_admin</name>
     <description>Demo project for Spring Boot</description>
 
@@ -47,9 +48,11 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <fork>true</fork>
+                    <mainClass>com.seauf.SeaufRecordAdminApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>seauf_record_admin</finalName>
     </build>
 
 </project>

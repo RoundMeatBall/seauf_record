@@ -17,4 +17,9 @@ public class AdminController {
         return "test";
     }
 
+    @RequestMapping("extJs")
+    public String extJs(){
+        return "extJs";
+    }
+
 }
