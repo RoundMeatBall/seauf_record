@@ -12,14 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = {"admin",""})
 public class AdminController {
 
+    @RequestMapping(value = {"index",""})
+    public String index(){
+        return "index";
+    }
+
     @RequestMapping("test")
     public String userInfo(){
         return "test";
     }
 
-    @RequestMapping(value = {"extJs",""})
-    public String extJs(){
-        return "extJs";
-    }
+
 
 }
