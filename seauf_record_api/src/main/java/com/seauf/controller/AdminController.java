@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = {"admin",""})
 public class AdminController {
 
-    @RequestMapping(value = {"index",""})
+    @RequestMapping("")
     public String index(){
         return "index";
     }
@@ -20,6 +20,11 @@ public class AdminController {
     @RequestMapping("test")
     public String userInfo(){
         return "test";
+    }
+
+    @RequestMapping("game")
+    public String game(){
+        return "game";
     }
 
 
