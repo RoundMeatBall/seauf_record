@@ -9,24 +9,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @create: 2019/02/21
  */
 @Controller
-@RequestMapping(value = {"admin",""})
+@RequestMapping(value = {"admin", ""})
 public class AdminController {
 
     @RequestMapping("")
-    public String index(){
+    public String index() {
         return "index";
     }
 
     @RequestMapping("test")
-    public String userInfo(){
+    public String userInfo() {
         return "test";
     }
 
     @RequestMapping("game")
-    public String game(){
+    public String game() {
         return "game";
     }
-
 
 
 }

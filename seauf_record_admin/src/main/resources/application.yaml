@@ -7,8 +7,12 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
     cache: false #关闭缓存
-
-
+  redis:
+    database: 0 # Redis数据库索引（默认为0）
+    host: 101.132.168.238
+    port: 6379
+    password: lynn123.
+    timeout: 1000
 
 server:
   port: 81
