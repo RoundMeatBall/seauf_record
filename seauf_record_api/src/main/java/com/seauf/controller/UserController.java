@@ -20,7 +20,7 @@ import java.util.List;
  * @create: 2019/02/21
  */
 @Controller
-@RequestMapping(value = {"user", ""})
+@RequestMapping(value = {"user"})
 public class UserController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -51,11 +51,6 @@ public class UserController {
     @RequestMapping()
     public String index() {
         return "login";
-    }
-
-    @RequestMapping("test")
-    public String userInfo() {
-        return "test";
     }
 
     @RequestMapping("game")
