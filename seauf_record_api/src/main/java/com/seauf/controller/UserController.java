@@ -28,6 +28,11 @@ public class UserController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    @RequestMapping("login")
+    public String index() {
+        return "user/login";
+    }
+
     @PostMapping("register ")
     public User register (HttpServletRequest req) {
         User user = new User();
@@ -46,11 +51,6 @@ public class UserController {
         users.add(user);
         stringRedisTemplate.opsForValue().set("users", JSON.toJSONString(users));
         return user;
-    }
-
-    @RequestMapping()
-    public String index() {
-        return "login";
     }
 
     @RequestMapping("game")
