@@ -1,11 +1,10 @@
-package com.seauf.controller.vo;
+package com.seauf.service.dto;
 
 /**
- * @description:
- * @author: lynn
- * @create: 2019/04/03
- */
-public class UserVO {
+ * @author: Mr.lynn
+ * @create: 2019-04-23 21:48
+ **/
+public class UserDTO {
 
     private Integer id;
 

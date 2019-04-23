@@ -1,4 +1,4 @@
-package config;
+package com.seauf.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
