@@ -22,7 +22,7 @@ spring:
 
 
 server:
-  port: 81
+  port: 80
 
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
