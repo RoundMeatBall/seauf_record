@@ -1,6 +1,6 @@
 layui.config({
     base: '/layuiadmin/',
-    controller : '/user/'
+    controller: '/user/'
 }).extend({
     index: 'lib/index' //主入口模块
 }).use(['index', 'user'], function () {
@@ -16,7 +16,7 @@ layui.config({
 
         //请求登入接口
         admin.req({
-            url: layui.setter.controller + 'login' //实际使用请改成服务端真实接口
+            url: "http://record.seauf.com:81/" + 'user/login'
             , data: obj.field
             , done: function (res) {
 
