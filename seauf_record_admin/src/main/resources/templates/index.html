@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,20 +14,9 @@
 </head>
 
 <body class="text-center">
-<form class="form-signin">
-    <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
-    <label for="inputPhone" class="sr-only">手机号</label>
-    <input type="phone" id="inputPhone" class="form-control" placeholder="手机号" required autofocus>
-    <label for="inputPassword" class="sr-only">密码</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> 记住我
-        </label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2019-2020</p>
-</form>
+    <div th:replace="head::myHead"></div>
+    <div th:replace="nav::myNav"></div>
+    <div th:replace="foot::myFoot"></div>
 </body>
 
 <script src="/js/vendor/jQuery/jquery-3.3.1.min.js"></script>

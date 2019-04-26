@@ -15,4 +15,19 @@ public class IndexController {
     public String index() {
         return "index";
     }
+
+    @RequestMapping("nav")
+    public String nav() {
+        return "nav";
+    }
+
+    @RequestMapping("head")
+    public String head() {
+        return "head";
+    }
+
+    @RequestMapping("foot")
+    public String foot() {
+        return "foot";
+    }
 }
