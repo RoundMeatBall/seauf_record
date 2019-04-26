@@ -35,4 +35,9 @@ public class IndexController {
     public String dashboard() {
         return "/index/dashboard";
     }
+
+    @RequestMapping("/index/financial")
+    public String financial() {
+        return "/index/financial";
+    }
 }

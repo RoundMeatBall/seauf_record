@@ -25,7 +25,8 @@
         <div th:replace="nav::myNav"></div>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <div th:include="/index/dashboard::myDashboard"></div>
+            <div class="dashboard1" th:include="/index/dashboard::myDashboard"></div>
+            <div class="dashboard2" th:include="/index/financial::myFinancial"></div>
         </main>
 
     </div>
@@ -37,10 +38,11 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="/js/vendor/jquery-3.3.1.min.js"></script>
+<script src="/js/vendor/jQuery/jquery-3.3.1.min.js"></script>
 <script src="/js/vendor/popper.min.js"></script>
 <script src="/js/vendor/bootstrap/bootstrap.min.js"></script>
 <script src="/js/vendor/feather.min.js"></script>
+<script src="/js/index.js"></script>
 <script>
     feather.replace()
 </script>
