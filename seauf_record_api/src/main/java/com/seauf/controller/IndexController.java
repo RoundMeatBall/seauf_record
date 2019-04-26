@@ -16,11 +16,6 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping("dashboard")
-    public String dashboard() {
-        return "dashboard";
-    }
-
     @RequestMapping("nav")
     public String nav() {
         return "nav";
@@ -34,5 +29,10 @@ public class IndexController {
     @RequestMapping("foot")
     public String foot() {
         return "foot";
+    }
+
+    @RequestMapping("/index/dashboard")
+    public String dashboard() {
+        return "/index/dashboard";
     }
 }
