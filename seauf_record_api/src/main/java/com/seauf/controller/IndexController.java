@@ -16,6 +16,11 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping("dashboard")
+    public String dashboard() {
+        return "dashboard";
+    }
+
     @RequestMapping("nav")
     public String nav() {
         return "nav";
