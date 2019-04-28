@@ -1,3 +1,4 @@
+feather.replace()
 
 $("#financial").addClass("active");
 

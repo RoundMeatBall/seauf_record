@@ -1,3 +1,4 @@
+feather.replace()
 
 $("#report").addClass("active");
 
