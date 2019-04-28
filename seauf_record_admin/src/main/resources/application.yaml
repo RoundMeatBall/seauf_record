@@ -15,11 +15,12 @@ spring:
     timeout: 1000
 
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://101.132.168.238:3306/record?useUnicode=true&characterEncoding=utf-8
     username : root
     password: lynn123.
 
+logging.level.org.springframework.boot.autoconfigure: ERROR
 
 server:
   port: 81
