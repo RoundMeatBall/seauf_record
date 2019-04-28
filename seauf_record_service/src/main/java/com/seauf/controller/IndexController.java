@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    @RequestMapping("")
+    @RequestMapping("index")
     public String index() {
         return "index";
     }
@@ -31,7 +31,7 @@ public class IndexController {
         return "foot";
     }
 
-    @RequestMapping("/index/dashboard")
+    @RequestMapping(value = {"/index/dashboard", ""})
     public String dashboard() {
         return "/index/dashboard";
     }
