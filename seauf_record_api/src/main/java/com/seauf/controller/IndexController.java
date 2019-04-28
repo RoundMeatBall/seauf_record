@@ -40,4 +40,9 @@ public class IndexController {
     public String financial() {
         return "/index/financial";
     }
+
+    @RequestMapping("/index/report")
+    public String report() {
+        return "/index/report";
+    }
 }
