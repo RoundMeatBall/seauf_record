@@ -4,12 +4,14 @@ import com.seauf.dao.UserDao;
 import com.seauf.service.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author: Mr.lynn
  * @create: 2019-04-23 21:38
  **/
 @Service("userService")
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -22,7 +24,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer insert(UserDTO userDTO) {
-        userDTO.setId(1);
-        return userDao.insert(userDTO);
+        userDTO.setId(110011);
+        userDao.insert(userDTO);
+        return 1;
     }
 }

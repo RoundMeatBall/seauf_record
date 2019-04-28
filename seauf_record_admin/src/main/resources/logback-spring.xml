@@ -22,10 +22,10 @@
     </appender>
     <!-- 按照每天生成日志文件 -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${user.dir}/logs/btmpool.log</File><!--不指定会出现Linux无法输出文件-->
+        <File>${user.dir}/logs/warn.log</File><!--不指定会出现Linux无法输出文件-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
-            <FileNamePattern>${user.dir}/logs/pool.log.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>${user.dir}/logs/warn-%d{yyyy-MM-dd HH:mm}.log</FileNamePattern>
             <!--日志文件保留天数-->
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
@@ -40,9 +40,9 @@
         </triggeringPolicy>
     </appender>
 
-    <logger name="io.bytom.pool" level="DEBUG"/>
+    <logger name="io.bytom.pool" level="WARN"/>
     <!-- 日志输出级别 -->
-    <root level="INFO">
+    <root level="WARN">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>
