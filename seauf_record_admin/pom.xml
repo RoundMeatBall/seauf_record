@@ -70,7 +70,7 @@
                 <configuration>
                     <fork>true</fork>
                     <mainClass>com.seauf.SeaufRecordAdminApplication</mainClass>
-                    <layout>ZIP</layout>
+                    <layout>JAR</layout>
                 </configuration>
                 <executions>
                     <execution>
