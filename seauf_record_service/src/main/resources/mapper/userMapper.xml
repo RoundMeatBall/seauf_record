@@ -7,8 +7,8 @@
         INSERT INTO
           sys_user
             (
-              n_id
-            , s_user_name
+              id
+            , user_name
             )
         VALUES
             (

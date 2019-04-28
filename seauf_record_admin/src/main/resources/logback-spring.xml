@@ -40,9 +40,9 @@
         </triggeringPolicy>
     </appender>
 
-    <logger name="io.bytom.pool" level="WARN"/>
+    <logger name="io.bytom.pool" level="DEBUG"/>
     <!-- 日志输出级别 -->
-    <root level="WARN">
+    <root level="INFO">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>
