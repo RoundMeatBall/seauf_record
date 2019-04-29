@@ -3,20 +3,20 @@
 <nav th:fragment="myNav" class="col-md-2 d-none d-md-block bg-light sidebar">
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
-            <li class="nav-item" onclick="selectPage('/index/dashboard')">
-                <a class="nav-link" href="#" id="dashboard">
+            <li class="nav-item">
+                <a class="nav-link" href="/index/dashboard" id="dashboard">
                     <embed src="/images/home.svg" type="image/svg+xml" class="feather">
                     仪表盘 <span class="sr-only">(current)</span>
                 </a>
             </li>
-            <li class="nav-item" onclick="selectPage('/index/financial')">
-                <a class="nav-link" href="#" id="financial">
+            <li class="nav-item">
+                <a class="nav-link" href="/index/financial" id="financial">
                     <embed src="/images/dollar-sign.svg" type="image/svg+xml" class="feather">
                     记账
                 </a>
             </li>
-            <li class="nav-item" onclick="selectPage('/index/report')">
-                <a class="nav-link" href="#" id="report">
+            <li class="nav-item">
+                <a class="nav-link" href="/index/report" id="report">
                     <embed src="/images/bar-chart-2.svg" type="image/svg+xml" class="feather"/>
                     报表
                 </a>

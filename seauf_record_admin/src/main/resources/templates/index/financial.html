@@ -17,13 +17,13 @@
 <body>
 
 <!--头部 -->
-<div th:replace="head::myHead"></div>
+<div th:replace="/head::myHead"></div>
 
 <div class="container-fluid">
     <div class="row">
 
         <!--导航-->
-        <div th:replace="nav::myNav"></div>
+        <div th:replace="/nav::myNav"></div>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
@@ -162,7 +162,7 @@
 </div>
 
 <!--版权-->
-<div th:replace="foot::myFoot"></div>
+<div th:replace="/foot::myFoot"></div>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
