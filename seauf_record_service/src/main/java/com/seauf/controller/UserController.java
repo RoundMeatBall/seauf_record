@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +45,12 @@ public class UserController {
     @ResponseBody
     public Integer register(@RequestBody UserVO userVO, HttpServletRequest req) {
 //        stringRedisTemplate.opsForValue().set("users", JSON.toJSONString(users));
+        try {
+            req.getInputStream();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         UserDTO userDTO = new UserDTO();
         userDTO.setUserName(userVO.getUserName());
         return userService.insert(userDTO);
