@@ -1,11 +1,15 @@
-package com.seauf.controller.vo;
+package com.seauf.controller.model;
 
 /**
  * @description:
  * @author: lynn
  * @create: 2019/04/03
  */
-public class UserVO {
+public class SysUserModel {
+
+    private Integer page;
+
+    private Integer limit;
 
     private Integer id;
 
@@ -55,5 +59,21 @@ public class UserVO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 }
