@@ -4,7 +4,7 @@ spring:
   resources:
     static-locations: classpath:/static/
   thymeleaf:
-    prefix: classpath:/templates
+    prefix: classpath:/template/
     suffix: .html
     cache: false #关闭缓存
   redis:
@@ -23,7 +23,7 @@ spring:
 logging.level.org.springframework.boot.autoconfigure: ERROR
 
 server:
-  port: 81
+  port: 80
 
 mybatis:
   config-location: classpath:mybatis-config.xml

@@ -11,38 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    @RequestMapping("index")
+    @RequestMapping("")
     public String index() {
         return "index";
-    }
-
-    @RequestMapping("nav")
-    public String nav() {
-        return "nav";
-    }
-
-    @RequestMapping("head")
-    public String head() {
-        return "head";
-    }
-
-    @RequestMapping("foot")
-    public String foot() {
-        return "foot";
-    }
-
-    @RequestMapping(value = {"/index/dashboard", ""})
-    public String dashboard() {
-        return "/index/dashboard";
-    }
-
-    @RequestMapping("/index/financial")
-    public String financial() {
-        return "/index/financial";
-    }
-
-    @RequestMapping("/index/report")
-    public String report() {
-        return "/index/report";
     }
 }
