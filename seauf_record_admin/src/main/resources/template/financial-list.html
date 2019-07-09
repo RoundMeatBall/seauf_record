@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+
+<head>
+    <meta charset="UTF-8">
+    <title>账目明细</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" href="../static/css/font.css">
+    <link rel="stylesheet" href="../static/css/xadmin.css">
+    <script src="../static/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/xadmin.js"></script>
+</head>
+
+<body>
+<div class="x-nav">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a href="">演示</a>
+                <a>
+                    <cite>导航元素</cite></a>
+            </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
+    </a>
+</div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <form class="layui-form layui-col-space5">
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input class="layui-input" placeholder="开始日" name="start" id="start"></div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input class="layui-input" placeholder="截止日" name="end" id="end"></div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <select name="contrller">
+                                <option>支付方式</option>
+                                <option>支付宝</option>
+                                <option>微信</option>
+                                <option>货到付款</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <select name="contrller">
+                                <option value="">订单状态</option>
+                                <option value="0">待确认</option>
+                                <option value="1">已确认</option>
+                                <option value="2">已收货</option>
+                                <option value="3">已取消</option>
+                                <option value="4">已完成</option>
+                                <option value="5">已作废</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input type="text" name="username" placeholder="请输入订单号" autocomplete="off"
+                                   class="layui-input"></div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <button class="layui-btn" lay-filter="sreach">
+                                <i class="layui-icon">&#xe615;</i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-card-header">
+                    <button class="layui-btn layui-btn-danger" onclick="delAll()">
+                        <i class="layui-icon"></i>批量删除
+                    </button>
+                    <button class="layui-btn" onclick="xadmin.open('添加用户','./order-add.html',800,600)">
+                        <i class="layui-icon"></i>添加
+                    </button>
+                </div>
+                <div class="layui-card-body ">
+                    <table class="layui-hide" id="financial" lay-filter="financial"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var $ = layui.$;
+    var clientHeight = document.documentElement.clientHeight;
+
+    var parentJson;
+    layui.use(['table', 'jquery', 'form'], function () {
+        var table = layui.table;
+        var form = layui.form;
+        //方法级渲染
+        table.render({
+            elem: '#financial'
+            , url: '/financial/list'
+            , where: {param: JSON.stringify({"key": ""})}
+            , method: 'post'
+            , contentType: "application/json"
+            , height: clientHeight * 0.9
+            , cols: [
+                [
+                    {title: '操作', toolbar: '#barDemo', width:120},
+                    {field: 'id', title: 'ID'},
+                    {field: 'tenantId', title: '租户'},
+                    {field: 'tenantName', title: '租户'},
+                    {field: 'description', title: '指令描述'},
+                    {field: 'appParams', title: 'app参数'},
+                    {field: 'h5Params', title: 'h5参数'},
+                    {field: 'comment', title: '备注'},
+                    {
+                        field: 'updateTime',
+                        title: '更新时间',
+                        sort: true,
+                        templet: "<div>{{layui.util.toDateString(d.updateTime, 'MM-dd HH:mm:ss')}}</div>"
+                        , width:150
+                    },
+                    {
+                        field: 'createTime',
+                        title: '创建时间',
+                        templet: "<div>{{layui.util.toDateString(d.createTime, 'MM-dd HH:mm:ss')}}</div>"
+                        , width:150
+                    }
+                ]
+            ]
+            , page: true
+            , response: {
+                statusCode: 0 //重新规定成功的状态码为 200，table 组件默认为 0
+            }
+            , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.data.total, //解析数据长度
+                    "data": res.data.records //解析数据列表
+                };
+            }, done: function (res, curr, count) {
+                $("[data-field='id']").css('display', 'none');
+                $("[data-field='tenantId']").css('display', 'none');
+                $("[data-field='updateTime']").css('display', 'none');
+            }
+        });
+
+        //监听行工具事件
+        table.on('tool(action)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'del') {
+                layer.confirm("确认要删除吗", function (index) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/appadmin/action/delete",
+                        dataType: "json",
+                        contentType: "application/json",
+                        data: JSON.stringify({"id": data.id}),
+                        success: function (result) {
+                            //执行重载
+                            table.reload('action', {
+                                page: {
+                                    curr: 1 //重新从第 1 页开始
+                                }
+                            });
+                            layer.close(index);
+                        }
+                    });
+                });
+            }else if (obj.event === 'openEdit') {
+                parentJson = JSON.stringify(data);
+                layer.open({
+                    type: 2
+                    , title: '编辑行为'
+                    , area: ['100%', '100%']
+                    , shade: 0
+                    , resize: false
+                    , maxmin: true
+                    , content: 'actionEdit.html'
+                    , data: JSON.stringify({"data": data}),
+                });
+            }
+        });
+
+        var $ = layui.$, active = {
+            reload: function () {
+                //执行重载
+                table.reload('action', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {
+                        tenantId: $('#tenantId').val(),
+                        description: $('#description').val()
+                    }
+                });
+            },
+            addRow: function () {
+                layer.open({
+                    type: 2
+                    , title: '添加行为'
+                    , area: ['100%', '100%']
+                    , shade: 0
+                    , resize: false
+                    , maxmin: true
+                    , content: 'actionAdd.html'
+                    , success: function (result) {
+                        //执行重载
+                        table.reload('action', {
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
+                    }
+                });
+
+            }
+        };
+
+        $(function () {// 初始化内容
+            findTenant();
+        });
+
+        function findTenant() {
+            $.ajax({
+                type: "POST",
+                url: "/appadmin/tenant/find",
+                dataType: "json",
+                contentType: "application/json",
+                async: false,
+                data: JSON.stringify({}),
+                success: function (result) {
+
+                    if (result && result.data && result.data.records) {
+                        actionList = result.data;
+                        //发生改变时清空html
+                        var option1 = $("<option>").val('').text("请选择或者搜索");
+                        $("#tenantId").append(option1);
+                        for (var i = 0; i < result.data.records.length; i++) {
+                            var option1 = $("<option>").val(result.data.records[i].id).text(result.data.records[i].name);
+                            $("#tenantId").append(option1);
+                        }
+                        form.render('select');
+                    }
+                }
+            });
+        }
+    });
+</script>
+
+</html>
