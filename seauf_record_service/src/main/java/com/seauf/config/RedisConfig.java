@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -21,6 +22,8 @@ import redis.clients.jedis.JedisPoolConfig;
 public class RedisConfig extends CachingConfigurerSupport {
 
     private Logger logger = LoggerFactory.getLogger(RedisConfig.class);
+
+    private static JedisPool jedisPool;
 
     /**
      * SpringSession  需要注意的就是redis需要2.8以上版本，然后开启事件通知，在redis配置文件里面加上
@@ -63,9 +66,18 @@ public class RedisConfig extends CachingConfigurerSupport {
         jedisPoolConfig.setMaxTotal(maxActive);
         jedisPoolConfig.setMinIdle(minIdle);
         JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, null);
-
         logger.info("JedisPool注入成功！");
         logger.info("redis地址：" + host + ":" + port);
         return jedisPool;
+    }
+
+    public static Jedis getJedis() {
+        return jedisPool.getResource();
+    }
+
+    public static void closeJedis(Jedis jedis) {
+        if (jedis != null) {
+            jedis.close();
+        }
     }
 }

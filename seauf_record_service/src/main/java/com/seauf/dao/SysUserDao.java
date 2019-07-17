@@ -3,7 +3,9 @@ package com.seauf.dao;
 import com.seauf.entity.SysUserENT;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author fhy
@@ -12,4 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SysUserDao extends JpaRepository<SysUserENT, Integer>, JpaSpecificationExecutor<SysUserENT> {
 
+    @Transactional
+    @Query("select id from SysUserENT ent where nickName =:nickName and password =:md5DigestPassword")
+    Integer existByPassword(String nickName, String md5DigestPassword);
 }

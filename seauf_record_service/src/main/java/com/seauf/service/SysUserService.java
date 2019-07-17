@@ -15,4 +15,6 @@ public interface SysUserService {
     void saveSysUser(SysUserENT SysUser);
 
     void updateSysUser(SysUserENT SysUser);
+
+    Integer existByPassword(String nickName, String md5DigestPassword);
 }

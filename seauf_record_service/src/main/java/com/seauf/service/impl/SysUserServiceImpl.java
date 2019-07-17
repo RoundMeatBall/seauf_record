@@ -57,4 +57,9 @@ public class SysUserServiceImpl implements SysUserService {
     public void updateSysUser(SysUserENT sysUser) {
         sysUserDao.save(sysUser);
     }
+
+    @Override
+    public Integer existByPassword(String nickName, String md5DigestPassword) {
+        return sysUserDao.existByPassword(nickName, md5DigestPassword);
+    }
 }
