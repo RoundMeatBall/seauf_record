@@ -49,10 +49,6 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.common.utils</groupId>
-            <artifactId>commonutils</artifactId>
-        </dependency>
     </dependencies>
 
 
