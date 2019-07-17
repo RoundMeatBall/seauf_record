@@ -1,6 +1,7 @@
 package com.seauf.webconfig;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
         HttpSession session = request.getSession();
 
         //判断是否已有该用户登录的session
-        if (false) {
+        if (!StringUtils.isEmpty(session.getAttribute("user"))) {
             return true;
         }
 

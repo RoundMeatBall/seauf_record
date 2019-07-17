@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author fhy
  * @create 2019-07-09 20:02:16
@@ -43,7 +45,7 @@ public class SysUserController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public ResultModel<String> login(@RequestBody SysUserENT sysUser) {
+    public ResultModel<String> login(@RequestBody SysUserENT sysUser, HttpServletRequest request) {
         ResultModel<String> resultModel = new ResultModel<>();
         //密码加密对比库信息
         String md5DigestPassword = DigestUtils.md5DigestAsHex(sysUser.getPassword().getBytes()).toUpperCase();
@@ -53,10 +55,16 @@ public class SysUserController {
             resultModel.setCode(ResultModel.ERROR);
             return resultModel;
         }
-        RedisUtil.setEx(String.format("%s%s", RedisConstant.USER_SESSION, userId), md5DigestPassword, 60 * 60 * 24);
+        request.getSession().setAttribute("user", DigestUtils.md5DigestAsHex(userId.toString().getBytes()).toUpperCase());
         resultModel.setData(md5DigestPassword);
         resultModel.setCode(ResultModel.SUCCESS);
         return resultModel;
+    }
+
+    @RequestMapping(value = "loginout", method = RequestMethod.POST)
+    public ResultModel<String> login(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return new ResultModel<>();
     }
 
 }

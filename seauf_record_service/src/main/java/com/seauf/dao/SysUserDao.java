@@ -15,6 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface SysUserDao extends JpaRepository<SysUserENT, Integer>, JpaSpecificationExecutor<SysUserENT> {
 
     @Transactional
-    @Query("select id from SysUserENT ent where nickName =:nickName and password =:md5DigestPassword")
-    Integer existByPassword(String nickName, String md5DigestPassword);
+    @Query("select id from SysUserENT ent where userName =:userName and password =:md5DigestPassword")
+    Integer existByPassword(String userName, String md5DigestPassword);
 }

@@ -59,7 +59,7 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public Integer existByPassword(String nickName, String md5DigestPassword) {
-        return sysUserDao.existByPassword(nickName, md5DigestPassword);
+    public Integer existByPassword(String userName, String md5DigestPassword) {
+        return sysUserDao.existByPassword(userName, md5DigestPassword);
     }
 }
