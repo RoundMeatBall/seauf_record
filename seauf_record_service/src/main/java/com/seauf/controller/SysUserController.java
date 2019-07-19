@@ -6,12 +6,18 @@ import com.seauf.controller.model.ResultModel;
 import com.seauf.controller.model.SysUserModel;
 import com.seauf.entity.SysUserENT;
 import com.seauf.service.SysUserService;
+import com.seauf.util.DESUtil;
+import com.seauf.util.Md5Util;
 import com.seauf.util.RedisUtil;
+import com.seauf.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author fhy
@@ -65,6 +71,28 @@ public class SysUserController {
     public ResultModel<String> login(HttpServletRequest request) {
         request.getSession().invalidate();
         return new ResultModel<>();
+    }
+
+    public static void main(String[] args) {
+        String password = "test@123456";
+        String data1 = DESUtil.desEncrypt("{\"tickets\":[{\"content\":\"199;266;669\",\"issueName\":\"2019199\",\"lotteryId\":6,\"money\":4,\"multiple\":1,\"playType\":606,\"printEndTime\":\"2019-07-18 20:00:00\",\"schemeId\":35428016,\"ticketNo\":\"33319071800100003554400001016\"}]}", password);
+        System.out.println(data1);
+        String data = DESUtil.desDecrypt(data1, password);
+        String sign = Md5Util.encrypt(cleanMd5Source(data), password).toLowerCase();
+        System.out.println(sign);
+    }
+
+
+    private static String cleanMd5Source(String source) {
+        String dest = "";
+        if (StringUtils.isNotBlank(source)) {
+            Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+            Matcher m = p.matcher(source);
+            dest = m.replaceAll("");
+        }
+        char[] chars = dest.toCharArray();
+        Arrays.sort(chars);
+        return String.valueOf(chars).toLowerCase();
     }
 
 }
